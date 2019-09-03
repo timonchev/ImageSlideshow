@@ -16,6 +16,11 @@ open class FullScreenSlideshowViewController: UIViewController {
         slideshow.contentScaleMode = UIViewContentMode.scaleAspectFit
         slideshow.pageIndicatorPosition = PageIndicatorPosition(horizontal: .center, vertical: .bottom)
         // turns off the timer
+        let pageIndicator = UIPageControl()
+        pageIndicator.currentPageIndicatorTintColor = UIColor.darkGray
+        pageIndicator.pageIndicatorTintColor = UIColor.lightGray
+        slideshow.pageIndicator = pageIndicator
+
         slideshow.slideshowInterval = 0
         slideshow.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
 

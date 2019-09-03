@@ -245,7 +245,7 @@ class ZoomOutAnimator: ZoomAnimator, UIViewControllerAnimatedTransitioning {
     private var animatorForCurrentTransition: UIViewImplicitlyAnimating?
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.25
+        return 0.0
     }
 
     @available(iOS 10.0, *)

@@ -332,6 +332,10 @@ open class ImageSlideshow: UIView {
 
         loadImages(for: scrollViewPage)
     }
+    
+    open func setPagingEnable(value : Bool) {
+        self.scrollView.isPagingEnabled = value
+    }
 
     private func loadImages(for scrollViewPage: Int) {
         let totalCount = slideshowItems.count
@@ -533,16 +537,17 @@ open class ImageSlideshow: UIView {
      - returns: FullScreenSlideshowViewController instance
      */
     @discardableResult
-    open func presentFullScreenController(from controller: UIViewController) -> FullScreenSlideshowViewController {
+    open func presentFullScreenController(from controller: UIViewController, backgroundColor: UIColor = UIColor.black, inputData : [InputSource]) -> FullScreenSlideshowViewController {
         let fullscreen = FullScreenSlideshowViewController()
         fullscreen.pageSelected = {[weak self] (page: Int) in
             self?.setCurrentPage(page, animated: false)
         }
 
         fullscreen.initialPage = currentPage
-        fullscreen.inputs = images
+        fullscreen.inputs = inputData
+        fullscreen.backgroundColor = backgroundColor
         slideshowTransitioningDelegate = ZoomAnimatedTransitioningDelegate(slideshowView: self, slideshowController: fullscreen)
-        fullscreen.transitioningDelegate = slideshowTransitioningDelegate
+        //fullscreen.transitioningDelegate = slideshowTransitioningDelegate
         controller.present(fullscreen, animated: true, completion: nil)
 
         return fullscreen
